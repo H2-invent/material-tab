@@ -1,4 +1,4 @@
-$main-color : #2561ef;
+$main-color: #2561ef;
 
 .nav-tabs {
   position: relative;
@@ -68,7 +68,7 @@ $main-color : #2561ef;
     margin-bottom: 100px;
 
     &.noAnimation {
-      transition: transform 0s ease!important;
+      transition: transform 0s ease !important;
     }
   }
 
@@ -88,6 +88,7 @@ $main-color : #2561ef;
       position: relative;
       z-index: 2;
     }
+
     .tab-pane {
       transform: translateX(110%);
 
@@ -100,3 +101,15 @@ $main-color : #2561ef;
   }
 }
 
+.nav-item {
+  a {
+    color: black;
+  }
+
+  &.active {
+    a {
+      color: $main-color;
+    }
+  }
+
+}

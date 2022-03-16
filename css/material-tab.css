@@ -85,4 +85,11 @@
   transform: translateX(0%);
 }
 
+.nav-item a {
+  color: black;
+}
+.nav-item.active a {
+  color: #2561ef;
+}
+
 /*# sourceMappingURL=material-tab.css.map */

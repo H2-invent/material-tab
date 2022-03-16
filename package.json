@@ -1,7 +1,13 @@
 {
   "name": "h2-invent-material-tabs",
-  "version": "1.0.0",
+  "version": "1.3.0",
+  "keywords": ["Material Design", "Tabs","Google Material Design", "Material Design Tabs"],
   "description": "This creates a great material design tab",
+  "homepage": "https://github.com/H2-invent/material-tab",
+  "bugs": {
+    "url" : "https://github.com/H2-invent/material-tab/issues",
+    "email" : "entwicklung@h2-invent.com"
+  },
   "main": "js/material-tab.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
