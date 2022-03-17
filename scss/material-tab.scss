@@ -1,4 +1,4 @@
-$main-color: #2561ef;
+$main-color: red;
 
 .nav-tabs {
   position: relative;
@@ -101,15 +101,16 @@ $main-color: #2561ef;
   }
 }
 
-.nav-item {
-  a {
-    color: black;
-  }
-
-  &.active {
-    a {
-      color: $main-color;
+.nav-tabs {
+  .nav-item {
+      color: black;
+    a{
+      color: inherit;
+    }
+    &.active {
+      a {
+        color: $main-color;
+      }
     }
   }
-
 }

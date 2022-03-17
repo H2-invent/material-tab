@@ -7,7 +7,7 @@
   position: absolute;
   transform-origin: left center;
   height: fit-content;
-  border-bottom: solid 3px #2561ef;
+  border-bottom: solid 3px red;
   bottom: 0;
   transition: transform 0.18s ease;
   -webkit-transition: transform 0.18s ease;
@@ -32,7 +32,7 @@
 .nav-tabs .nav-link.active {
   border: none;
   background-color: unset;
-  color: #2561ef;
+  color: red;
   border-radius: 1px;
 }
 .nav-tabs .nav-link:focus-visible {
@@ -40,7 +40,7 @@
 }
 .nav-tabs .nav-link:hover {
   border: none;
-  color: #2561ef;
+  color: red;
 }
 
 .tab-content {
@@ -85,11 +85,14 @@
   transform: translateX(0%);
 }
 
-.nav-item a {
+.nav-tabs .nav-item {
   color: black;
 }
-.nav-item.active a {
-  color: #2561ef;
+.nav-tabs .nav-item a {
+  color: inherit;
+}
+.nav-tabs .nav-item.active a {
+  color: red;
 }
 
 /*# sourceMappingURL=material-tab.css.map */
