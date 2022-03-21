@@ -18,6 +18,9 @@ init the tabs with
 
 ``initTabs('<classWhich sorounds the tabs>')``
 
+Find here a demo at codepen
+https://codepen.io/holema/pen/qBpNLmJ
+
 see the /dist/demo.html how it looks and how to integrate it.
 ![](Animation.gif)
 
