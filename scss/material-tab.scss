@@ -47,7 +47,6 @@ $main-color: red !default;
 
     &:hover {
       border: none;
-      color: $main-color;
     }
   }
 }
@@ -107,7 +106,10 @@ $main-color: red !default;
     a {
       color: inherit;
     }
-
+    &:hover {
+      border: none;
+      color: $main-color;
+    }
     &.active {
       color: $main-color;
     }
