@@ -1,5 +1,7 @@
 import {initTabs} from "./material-tab";
 
-function initTabs(input){
-    initTabs(input)
-}
+
+document.addEventListener("DOMContentLoaded", function () {
+    initTabs('.nav-tabs');
+});
+

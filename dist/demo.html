@@ -12,11 +12,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <div class="d-md-block d-none">
-                <ul class="nav nav-tabs mb-3 " id="ex1" role="tablist">
-                    <li class="nav-item">
+            <div class="d-block">
+                <ul class="nav nav-tabs mb-3" data-swipe="#swipeContent" id="ex1" role="tablist">
+                    <li class="nav-item active">
                         <a
-                                class="nav-link active"
+                                class="nav-link"
                                 id="ex1-tab-1-tab"
                                 data-mdb-toggle="tab"
                                 href="#ex1-tabs-1"
@@ -47,32 +47,11 @@
                                 aria-selected="false"
                         >Tab3</a>
                     </li>
-
-
                 </ul>
             </div>
 
-            <div class="d-md-none tabDropdown">
-                <button class="caretdown btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">{{ 'Zukünftige Konferenzen'|trans }}
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item dropdownTabToggle"
-                       href="#ex1-tab-1-tab">
-                        Tab3
-                    </a>
-                    <a class="dropdown-item dropdownTabToggle"
-                       href="#ex1-tab-3-tab">
-                        Tab2
-                    </a>
-                    <a href="#ex1-tab-2-tab"
-                       class="dropdown-item dropdownTabToggle">
-                        Tab3
-                    </a>
 
-                </div>
-            </div>
-            <div class="tab-content" id="ex1-content">
+            <div class="tab-content" id="swipeContent" data-swipe="#ex1">
                 <div class="tab-content-watch active">
                     <div
                             class="tab-pane fade show active"
