@@ -1,6 +1,6 @@
 function initTabs(selectorTab) {
 
-    window.addEventListener('resize', initalSetUnderline);
+    window.addEventListener('resize', initalSetUnderline('.underline'));
 
 
     var anchors = document.querySelectorAll(selectorTab);
@@ -8,14 +8,14 @@ function initTabs(selectorTab) {
 
         anchors[i].insertAdjacentHTML('beforeend', '<span class="underline"></span>');
 
-        var tabHandles = anchors[i].querySelectorAll('.nav-item');
+        var tabHandles = anchors[i].querySelectorAll('.nav-mat-item');
         for (var k = 0; k < tabHandles.length; k++) {
             var tabHand = tabHandles[k];
             tabHand.onclick = function (e) {
                 e.preventDefault();
                 var ele = this;
-                var parent = ele.closest('.nav-tabs');
-                var eleOld = parent.querySelector('.active').closest('.nav-item');
+                var parent = ele.closest('.nav-mat-tabs');
+                var eleOld = parent.querySelector('.active').closest('.nav-mat-item');
                 parent.querySelector('.active').classList.remove('active');
                 ele.classList.add('active');
                 var parentwidth = parent.clientWidth;
@@ -47,9 +47,14 @@ function initTabs(selectorTab) {
                 changeTabContent(ele.querySelector('a').getAttribute('href'), direction);
             }
         }
-        initSwipe(anchors[i].dataset.swipe);
+        try {
+            initSwipe(anchors[i].dataset.swipe);
+        }catch (e) {
+            console.log(e);
+            console.log('Swipe not activeted. Add data-swipe="#id" to the tabCOntent and on the nav bar see Demo')
+        }
     }
-    initalSetUnderline();
+    initalSetUnderline('.underline');
     var dropdown = document.querySelectorAll('.dropdownTabToggle');
 
     for (var i = 0; i < dropdown.length; i++) {
@@ -96,13 +101,13 @@ function changeTabContent(href, direction = 1) {
     return true;
 }
 
-function initalSetUnderline() {
-    var anchors = document.querySelectorAll('.underline');
+function initalSetUnderline($input) {
+    var anchors = document.querySelectorAll($input);
 
     for (var i = 0; i < anchors.length; i++) {
-        var ele = anchors[i].closest('.nav-tabs').querySelector('.active').closest('.nav-item');
+        var ele = anchors[i].closest('.nav-mat-tabs').querySelector('.nav-mat-item.active');
         var newLeft = ele.offsetLeft;
-        var parent = ele.closest('.nav-tabs');
+        var parent = ele.closest('.nav-mat-tabs');
         var parentwidth = parent.clientWidth;
 
         var leftAtfter = newLeft / parentwidth * 100;
@@ -110,7 +115,6 @@ function initalSetUnderline() {
         parent.querySelector('.underline').style.transform = 'translateX(' + leftAtfter + '%) scaleX(' + widthAfter + ')';
         parent.querySelector('.underline').style.display = 'block';
     }
-
 }
 
 
@@ -167,5 +171,5 @@ function initSwipe(trigger) {
     }
 }
 
-export {initTabs}
+export {initTabs,initalSetUnderline}
 

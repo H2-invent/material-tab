@@ -1,7 +1,15 @@
 $main-color: red !default;
 
-.nav-tabs {
+.nav-mat-tabs {
   position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  border-bottom: 1px solid #dee2e6;
 
   .underline {
     display: none;
@@ -15,9 +23,10 @@ $main-color: red !default;
     -webkit-transition: transform .18s ease;
   }
 
-  .nav-item {
+  .nav-mat-item {
     flex: 1;
     text-align: center;
+    cursor: pointer;
 
     &:focus {
       border: none;
@@ -26,27 +35,36 @@ $main-color: red !default;
 
     &:hover {
       background: rgba(46, 164, 79, 0.05);
+      border-radius: 1px;
+      color: $main-color;
+    }
+    &.active{
+      color: $main-color;
+    }
+    .nav-mat-link {
+      border: none;
+      transition: color .5s;
+      margin-bottom: -1px;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      display: block;
+      padding: 0.5rem 1rem;
       color: inherit;
-      border-radius: 1px;
-    }
-  }
 
-  .nav-link {
-    border: none;
-    transition: color .5s;
+      &.active {
+        border: none;
+        background-color: unset;
+        border-radius: 1px;
+      }
 
-    &.active {
-      border: none;
-      background-color: unset;
-      border-radius: 1px;
-    }
+      &:focus-visible {
+        border: none;
+      }
 
-    &:focus-visible {
-      border: none;
-    }
-
-    &:hover {
-      border: none;
+      &:hover {
+        border: none;
+        text-decoration: none;
+      }
     }
   }
 }
@@ -99,17 +117,19 @@ $main-color: red !default;
   }
 }
 
-.nav-tabs {
+.nav-mat-tabs {
   .nav-item {
     color: black;
 
     a {
       color: inherit;
     }
+
     &:hover {
       border: none;
       color: $main-color;
     }
+
     &.active {
       color: $main-color;
     }
