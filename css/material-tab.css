@@ -34,7 +34,7 @@
   border-radius: 1px;
   color: red;
 }
-.nav-mat-tabs .nav-mat-item.active {
+.nav-mat-tabs .nav-mat-item.mat-active {
   color: red;
 }
 .nav-mat-tabs .nav-mat-item .nav-mat-link {
@@ -47,7 +47,7 @@
   padding: 0.5rem 1rem;
   color: inherit;
 }
-.nav-mat-tabs .nav-mat-item .nav-mat-link.active {
+.nav-mat-tabs .nav-mat-item .nav-mat-link.mat-active {
   border: none;
   background-color: unset;
   border-radius: 1px;
@@ -89,14 +89,14 @@
   flex-basis: 100%;
   flex-grow: 1;
 }
-.tab-content .tab-content-watch.active {
+.tab-content .tab-content-watch.mat-active {
   position: relative;
   z-index: 2;
 }
 .tab-content .tab-content-watch .tab-pane {
   transform: translateX(110%);
 }
-.tab-content .tab-content-watch .tab-pane.active {
+.tab-content .tab-content-watch .tab-pane.mat-active {
   position: relative;
   z-index: 2;
   transform: translateX(0%);
@@ -112,7 +112,7 @@
   border: none;
   color: red;
 }
-.nav-mat-tabs .nav-item.active {
+.nav-mat-tabs .nav-item.mat-active {
   color: red;
 }
 

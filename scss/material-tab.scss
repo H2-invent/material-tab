@@ -38,7 +38,7 @@ $main-color: red !default;
       border-radius: 1px;
       color: $main-color;
     }
-    &.active{
+    &.mat-active{
       color: $main-color;
     }
     .nav-mat-link {
@@ -51,7 +51,7 @@ $main-color: red !default;
       padding: 0.5rem 1rem;
       color: inherit;
 
-      &.active {
+      &.mat-active {
         border: none;
         background-color: unset;
         border-radius: 1px;
@@ -100,7 +100,7 @@ $main-color: red !default;
     flex-basis: 100%;
     flex-grow: 1;
 
-    &.active {
+    &.mat-active {
       position: relative;
       z-index: 2;
     }
@@ -108,7 +108,7 @@ $main-color: red !default;
     .tab-pane {
       transform: translateX(110%);
 
-      &.active {
+      &.mat-active {
         position: relative;
         z-index: 2;
         transform: translateX(0%);
@@ -130,7 +130,7 @@ $main-color: red !default;
       color: $main-color;
     }
 
-    &.active {
+    &.mat-active {
       color: $main-color;
     }
   }

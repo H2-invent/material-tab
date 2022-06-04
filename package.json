@@ -1,12 +1,17 @@
 {
   "name": "h2-invent-material-tabs",
-  "version": "1.16.0",
-  "keywords": ["Material Design", "Tabs","Google Material Design", "Material Design Tabs"],
+  "version": "1.20.0",
+  "keywords": [
+    "Material Design",
+    "Tabs",
+    "Google Material Design",
+    "Material Design Tabs"
+  ],
   "description": "This creates a great material design tab",
   "homepage": "https://github.com/H2-invent/material-tab",
   "bugs": {
-    "url" : "https://github.com/H2-invent/material-tab/issues",
-    "email" : "entwicklung@h2-invent.com"
+    "url": "https://github.com/H2-invent/material-tab/issues",
+    "email": "entwicklung@h2-invent.com"
   },
   "main": "js/material-tab.js",
   "scripts": {
@@ -16,7 +21,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "zingtouch": "^1.0.6"
+  },
   "devDependencies": {
     "sass": "^1.49.9",
     "webpack": "^5.70.0",

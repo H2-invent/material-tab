@@ -1,3 +1,4 @@
+import ZingTouch from 'zingtouch';
 function initTabs(selectorTab) {
 
     window.addEventListener('resize', initalSetUnderline('.underline'));
@@ -15,9 +16,9 @@ function initTabs(selectorTab) {
                 e.preventDefault();
                 var ele = this;
                 var parent = ele.closest('.nav-mat-tabs');
-                var eleOld = parent.querySelector('.active').closest('.nav-mat-item');
-                parent.querySelector('.active').classList.remove('active');
-                ele.classList.add('active');
+                var eleOld = parent.querySelector('.mat-active').closest('.nav-mat-item');
+                parent.querySelector('.mat-active').classList.remove('mat-active');
+                ele.classList.add('mat-active');
                 var parentwidth = parent.clientWidth;
                 var eleWidth = ele.clientWidth;
                 var oldRight = eleOld.offsetLeft + eleOld.clientWidth;
@@ -66,9 +67,9 @@ function initTabs(selectorTab) {
             var dropdownItems = ele.closest('.dropdown-menu').querySelectorAll('.dropdown-item');
 
             for (var y = 0; y < dropdownItems.length; y++) {
-                dropdownItems[y].classList.remove('active');
+                dropdownItems[y].classList.remove('mat-active');
             }
-            ele.classList.add('active');
+            ele.classList.add('mat-active');
             ele.closest('.tabDropdown').querySelector('button').textContent = ele.textContent;
         }
     }
@@ -78,8 +79,8 @@ function initTabs(selectorTab) {
 
 function changeTabContent(href, direction = 1) {
     var target = document.querySelector(href);
-    var oldEle = target.closest('.tab-content').querySelector('.active')
-    if (target.classList.contains('active')) {
+    var oldEle = target.closest('.tab-content').querySelector('.mat-active')
+    if (target.classList.contains('mat-active')) {
         return false;
     }
     target.classList.add('noAnimation');
@@ -92,11 +93,11 @@ function changeTabContent(href, direction = 1) {
     }
     setTimeout(function () {
         target.classList.remove('noAnimation')
-        oldEle.classList.remove('active');
-        oldEle.querySelector('.active').classList.remove('active');
-        target.closest('.tab-content-watch').classList.add('active');
+        oldEle.classList.remove('mat-active');
+        oldEle.querySelector('.mat-active').classList.remove('mat-active');
+        target.closest('.tab-content-watch').classList.add('mat-active');
         target.style.transform = 'translateX(0%)';
-        target.classList.add('active');
+        target.classList.add('mat-active');
     }, 0);
     return true;
 }
@@ -105,7 +106,7 @@ function initalSetUnderline($input) {
     var anchors = document.querySelectorAll($input);
 
     for (var i = 0; i < anchors.length; i++) {
-        var ele = anchors[i].closest('.nav-mat-tabs').querySelector('.nav-mat-item.active');
+        var ele = anchors[i].closest('.nav-mat-tabs').querySelector('.nav-mat-item.mat-active');
         var newLeft = ele.offsetLeft;
         var parent = ele.closest('.nav-mat-tabs');
         var parentwidth = parent.clientWidth;
@@ -126,35 +127,24 @@ var treshold = 100; //this sets the minimum swipe distance, to avoid noise and t
 
 
 function initSwipe(trigger) {
-    document.querySelector(trigger).addEventListener('touchstart', function (event) {
-        //console.log(event);
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-        //console.log(`the start is at X: ${startX}px and the Y is at ${startY}px`)
 
-    })
-
-    document.querySelector(trigger).addEventListener('touchend', function (event) {
-        //console.log(event);
-        endX = event.changedTouches[0].clientX;
-        endY = event.changedTouches[0].clientY;
-        //console.log(`the start is at X: ${endX}px and the Y is at ${endY}px`)
-
-        var xDist = endX - startX;
-        var yDist = endY - startY;
-        if (Math.abs(xDist) > treshold) {
-            if (xDist < 0) {
-                left(this.dataset.swipe)
+    var activeRegion = new ZingTouch.Region(document.querySelector(trigger),null,false);
+    let childElement = document.querySelector(trigger);
+    activeRegion.bind(childElement, new ZingTouch.Swipe({}),
+        function (event) {
+            var rad = event.detail.data[0]['directionFromOrigin'] / 360 * 2 * Math.PI;
+            var direction = event.detail.data[0]['currentDirection']
+            console.log(direction);
+            if (direction > 90 && direction <270) {
+                left(this.dataset.swipe);
             } else {
-                right(this.dataset.swipe)
+                right(this.dataset.swipe);
             }
-        }
-    })
-
+        });
 
     var left = (target) => {
         var tabnav = document.querySelector(target);
-        var tabActive = tabnav.querySelector('.active');
+        var tabActive = tabnav.querySelector('.mat-active');
         var nextTab = tabActive.nextElementSibling;
         if (nextTab) {
             nextTab.click();
@@ -162,7 +152,7 @@ function initSwipe(trigger) {
     }
     var right = (target) => {
         var tabnav = document.querySelector(target);
-        var tabActive = tabnav.querySelector('.active');
+        var tabActive = tabnav.querySelector('.mat-active');
         var prevTab = tabActive.previousElementSibling;
         if (prevTab) {
             prevTab.click();
@@ -170,6 +160,7 @@ function initSwipe(trigger) {
 
     }
 }
+
 
 export {initTabs,initalSetUnderline}
 
