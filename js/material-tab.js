@@ -134,10 +134,9 @@ function initSwipe(trigger) {
         function (event) {
             var rad = event.detail.data[0]['directionFromOrigin'] / 360 * 2 * Math.PI;
             var direction = event.detail.data[0]['currentDirection']
-            console.log(direction);
-            if (direction > 90 && direction <270) {
+            if (direction > 135 && direction <225) {
                 left(this.dataset.swipe);
-            } else {
+            } else if (direction > 315 || direction <45){
                 right(this.dataset.swipe);
             }
         });
