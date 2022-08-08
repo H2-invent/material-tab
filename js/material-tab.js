@@ -1,17 +1,26 @@
 import ZingTouch from 'zingtouch';
+
+var positionArr = getCookie('h2material-matPosition') ? getCookie('h2material-matPosition') : {};
+console.log(positionArr);
+
 function initTabs(selectorTab) {
 
     window.addEventListener('resize', initalSetUnderline('.underline'));
 
-
+    var parentCount = 0;
+    var parent = null;
     var anchors = document.querySelectorAll(selectorTab);
     for (var i = 0; i < anchors.length; i++) {
-
         anchors[i].insertAdjacentHTML('beforeend', '<span class="underline"></span>');
-
         var tabHandles = anchors[i].querySelectorAll('.nav-mat-item');
         for (var k = 0; k < tabHandles.length; k++) {
             var tabHand = tabHandles[k];
+            var parentTmp = tabHand.closest('.nav-mat-tabs');
+            if (parent !== parentTmp) {
+                parent = parentTmp;
+                parent.dataset.h2material = 'h2material_' + parentCount;
+                parentCount++;
+            }
             tabHand.onclick = function (e) {
                 e.preventDefault();
                 var ele = this;
@@ -44,18 +53,21 @@ function initTabs(selectorTab) {
                 setTimeout(function () {
                     parent.querySelector('.underline').style.transform = 'translateX(' + leftAtfter + '%) scaleX(' + widthAfter + ')';
                 }, 180);
-
+                var pos = ele.closest('.nav-mat-tabs').dataset.h2material
+                positionArr[pos] = ele.querySelector('a').id
+                setCookie('h2material-matPosition', positionArr, 365);
                 changeTabContent(ele.querySelector('a').getAttribute('href'), direction);
             }
         }
         try {
             initSwipe(anchors[i].dataset.swipe);
-        }catch (e) {
+        } catch (e) {
             console.log(e);
             console.log('Swipe not activeted. Add data-swipe="#id" to the tabCOntent and on the nav bar see Demo')
         }
     }
     initalSetUnderline('.underline');
+    setTabsFromCookie();
     var dropdown = document.querySelectorAll('.dropdownTabToggle');
 
     for (var i = 0; i < dropdown.length; i++) {
@@ -83,8 +95,10 @@ function changeTabContent(href, direction = 1) {
     if (target.classList.contains('mat-active')) {
         return false;
     }
+
     target.classList.add('noAnimation');
     if (direction === 1) {//we move to the left
+
         target.style.transform = 'translateX(-110%)'
         oldEle.querySelector('.tab-pane').style.transform = 'translateX(110%)';
     } else {
@@ -128,15 +142,15 @@ var treshold = 100; //this sets the minimum swipe distance, to avoid noise and t
 
 function initSwipe(trigger) {
 
-    var activeRegion = new ZingTouch.Region(document.querySelector(trigger),null,false);
+    var activeRegion = new ZingTouch.Region(document.querySelector(trigger), null, false);
     let childElement = document.querySelector(trigger);
     activeRegion.bind(childElement, new ZingTouch.Swipe({}),
         function (event) {
             var rad = event.detail.data[0]['directionFromOrigin'] / 360 * 2 * Math.PI;
             var direction = event.detail.data[0]['currentDirection']
-            if (direction > 135 && direction <225) {
+            if (direction > 135 && direction < 225) {
                 left(this.dataset.swipe);
-            } else if (direction > 315 || direction <45){
+            } else if (direction > 315 || direction < 45) {
                 right(this.dataset.swipe);
             }
         });
@@ -160,6 +174,41 @@ function initSwipe(trigger) {
     }
 }
 
+function setCookie(name, value, days) {
+    var expires = "";
+    if (typeof value === 'object' && value !== null) {
+        value = JSON.stringify(value);
+    }
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
-export {initTabs,initalSetUnderline}
+function getCookie(name) {
+    let cookie = {};
+    document.cookie.split(';').forEach(function (el) {
+        let [k, v] = el.split('=');
+        cookie[k.trim()] = v;
+    })
+    var value = cookie[name];
+    try {
+        value = JSON.parse(value);
+        return value
+    } catch (e) {
+        return value;
+    }
+}
+
+
+function setTabsFromCookie() {
+    for (const key in positionArr) {
+        document.getElementById(positionArr[key]).click();
+    }
+}
+
+
+export {initTabs, initalSetUnderline}
 
