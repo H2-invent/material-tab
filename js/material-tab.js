@@ -1,7 +1,6 @@
 import ZingTouch from 'zingtouch';
 
 var positionArr = getCookie('h2material-matPosition') ? getCookie('h2material-matPosition') : {};
-console.log(positionArr);
 
 function initTabs(selectorTab) {
 
@@ -66,8 +65,8 @@ function initTabs(selectorTab) {
             console.log('Swipe not activeted. Add data-swipe="#id" to the tabCOntent and on the nav bar see Demo')
         }
     }
-    initalSetUnderline('.underline');
     setTabsFromCookie();
+    initalSetUnderline('.underline');
     var dropdown = document.querySelectorAll('.dropdownTabToggle');
 
     for (var i = 0; i < dropdown.length; i++) {
@@ -205,7 +204,25 @@ function getCookie(name) {
 
 function setTabsFromCookie() {
     for (const key in positionArr) {
-        document.getElementById(positionArr[key]).click();
+        var href = document.getElementById(positionArr[key]).getAttribute('href')
+        var target = document.querySelector(href);
+        if (!target.classList.contains('mat-active')) {
+
+            var oldEle = target.closest('.tab-content').querySelector('.mat-active')
+            target.classList.add('noAnimation');
+            oldEle.querySelector('.mat-active').classList.remove('mat-active');
+            oldEle.classList.remove('mat-active');
+            oldEle.querySelector('.tab-pane').classList.add('noAnimation');
+            target.style.transform = 'translateX(0%)';
+            oldEle.querySelector('.tab-pane').style.transform = 'translateX(110%)';
+
+            target.classList.remove('noAnimation')
+            oldEle.querySelector('.tab-pane').classList.remove('noAnimation');
+            target.closest('.tab-content-watch').classList.add('mat-active');
+            target.classList.add('mat-active');
+            document.getElementById(positionArr[key]).click();
+
+        }
     }
 }
 
