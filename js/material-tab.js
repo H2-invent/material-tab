@@ -84,7 +84,13 @@ function initTabs(selectorTab) {
             ele.closest('.tabDropdown').querySelector('button').textContent = ele.textContent;
         }
     }
-
+    for (var i = 0; i < anchors.length; i++) {
+        var tabContent = document.querySelectorAll('.tab-content');
+        for (var k = 0; k < tabContent.length; k++) {
+            console.log(tabContent[k]);
+            tabContent[k].style.display = 'flex';
+        }
+    }
 }
 
 
