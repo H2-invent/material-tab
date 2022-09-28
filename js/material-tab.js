@@ -209,25 +209,28 @@ function getCookie(name) {
 
 function setTabsFromCookie() {
     for (const key in positionArr) {
-        var href = document.getElementById(positionArr[key]).getAttribute('href')
-        var target = document.querySelector(href);
-        if (!target.classList.contains('mat-active')) {
+        if (document.getElementById(positionArr[key])){
+            var href = document.getElementById(positionArr[key]).getAttribute('href')
+            var target = document.querySelector(href);
+            if (!target.classList.contains('mat-active')) {
 
-            var oldEle = target.closest('.tab-content').querySelector('.mat-active')
-            target.classList.add('noAnimation');
-            oldEle.querySelector('.mat-active').classList.remove('mat-active');
-            oldEle.classList.remove('mat-active');
-            oldEle.querySelector('.tab-pane').classList.add('noAnimation');
-            target.style.transform = 'translateX(0%)';
-            oldEle.querySelector('.tab-pane').style.transform = 'translateX(110%)';
+                var oldEle = target.closest('.tab-content').querySelector('.mat-active')
+                target.classList.add('noAnimation');
+                oldEle.querySelector('.mat-active').classList.remove('mat-active');
+                oldEle.classList.remove('mat-active');
+                oldEle.querySelector('.tab-pane').classList.add('noAnimation');
+                target.style.transform = 'translateX(0%)';
+                oldEle.querySelector('.tab-pane').style.transform = 'translateX(110%)';
 
-            target.classList.remove('noAnimation')
-            oldEle.querySelector('.tab-pane').classList.remove('noAnimation');
-            target.closest('.tab-content-watch').classList.add('mat-active');
-            target.classList.add('mat-active');
-            document.getElementById(positionArr[key]).click();
+                target.classList.remove('noAnimation')
+                oldEle.querySelector('.tab-pane').classList.remove('noAnimation');
+                target.closest('.tab-content-watch').classList.add('mat-active');
+                target.classList.add('mat-active');
+                document.getElementById(positionArr[key]).click();
 
+            }
         }
+
     }
 }
 
